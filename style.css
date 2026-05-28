@@ -1,0 +1,494 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+}
+
+body {
+    background-color: #0e1011;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; 
+    color: #a0a5aa;
+}
+
+.synth-container {
+    background-color: #16181a;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.plugin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #282c30;
+    padding: 8px 15px;
+    border-bottom: 2px solid #0e1011;
+    color: #b0b5ba;
+    font-size: 13px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.menu-icon {
+    font-size: 10px;
+    color: #00ffcc;
+}
+
+.window-controls span {
+    margin-left: 12px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #6c737a;
+}
+
+.window-controls span:hover {
+    color: #ffffff;
+}
+
+.upper-deck {
+    display: flex;
+    gap: 15px;
+    margin: 15px;
+    height: 150px;
+    flex-shrink: 0;
+}
+
+.visualizer-panel {
+    background-color: #050607;
+    border: 1px solid #202224;
+    border-radius: 4px;
+    width: 300px;
+    height: 100%;
+    position: relative;
+}
+
+#oscilloscreen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.control-rack {
+    display: flex;
+    gap: 15px;
+    flex: 1;
+    height: 100%;
+}
+
+/* Closely grouped layout to fix excessive slider spacing */
+.synth-module {
+    background-color: #111214;
+    border: 1px solid #1f2123;
+    border-radius: 4px;
+    padding: 10px 14px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 14px;
+    position: relative;
+    padding-top: 30px;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.module-header {
+    position: absolute;
+    top: 6px;
+    left: 8px;
+    right: 8px;
+    text-align: center;
+    font-size: 9px;
+    background-color: #1a1c1e;
+    padding: 2px 0;
+    border-radius: 2px;
+    color: #6c737a;
+    font-weight: bold;
+    border: 1px solid #25272a;
+    letter-spacing: 1px;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.dropdown-group {
+    margin-right: 4px;
+}
+
+.control-group label {
+    font-size: 9px;
+    color: #6c737a;
+    font-weight: bold;
+}
+
+.control-group select {
+    background-color: #1a1c1e;
+    border: 1px solid #2d3136;
+    color: #00ffcc;
+    padding: 3px;
+    font-size: 11px;
+    font-family: monospace;
+    border-radius: 3px;
+    outline: none;
+    width: 70px;
+    cursor: pointer;
+}
+
+/* Compressed vertical fader track styles */
+.slider-wrapper {
+    width: 20px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.control-group input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    position: absolute;
+    width: 66px;
+    height: 4px;
+    background: transparent;
+    outline: none;
+    transform: rotate(-90deg);
+    transform-origin: center;
+    margin: 0;
+}
+
+.control-group input[type="range"]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 3px;
+    background: #050607;
+    border: 1px solid #222528;
+    border-radius: 1px;
+}
+
+.control-group input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 12px;
+    width: 8px;
+    border-radius: 1px;
+    background: #00ffcc;
+    cursor: pointer;
+    margin-top: -5px;
+    box-shadow: 0 0 4px rgba(0, 255, 204, 0.5);
+    border: 1px solid #111214;
+}
+
+/* Two Short Wide Stacked Panels CSS Container Framework */
+.expansion-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+    height: 100%;
+}
+
+.horizontal-panel {
+    background-color: #111214;
+    border: 1px solid #1f2123;
+    border-radius: 4px;
+    flex: 1;
+    position: relative;
+    padding-top: 22px;
+    padding-left: 12px;
+    padding-right: 12px;
+    display: flex;
+    align-items: center;
+}
+
+.panel-header-tag {
+    position: absolute;
+    top: 4px;
+    left: 8px;
+    font-size: 8px;
+    color: #5c6268;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+/* Layout controls for the repurposed transport zone */
+.transport-cluster {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.transport-btn {
+    background-color: #1a1c1e;
+    border: 1px solid #2d3136;
+    border-radius: 3px;
+    color: #a0a5aa;
+    font-size: 9px;
+    font-weight: bold;
+    padding: 5px 8px;
+    cursor: pointer;
+}
+
+.transport-btn:hover {
+    color: #ffffff;
+    border-color: #3b4146;
+}
+
+.transport-btn.playing {
+    color: #00ffcc;
+    border-color: #00ffcc;
+    background-color: #142220;
+    text-shadow: 0 0 4px #00ffcc;
+}
+
+.transport-btn.metro-on {
+    color: #00ffcc;
+    border-color: #00ffcc;
+    background-color: #142220;
+}
+
+.inline-control {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-left: 1px solid #222528;
+    padding-left: 10px;
+}
+
+.inline-control label {
+    font-size: 9px;
+    font-weight: bold;
+    color: #5c6268;
+}
+
+.inline-control select, .inline-control input {
+    background-color: #1a1c1e;
+    border: 1px solid #2d3136;
+    color: #00ffcc;
+    font-family: monospace;
+    font-size: 11px;
+    padding: 3px;
+    border-radius: 3px;
+    outline: none;
+}
+
+.inline-control input {
+    width: 46px;
+    text-align: center;
+}
+
+.empty-deck-panel {
+    border: 1px dashed #222528;
+    background-color: #0d0e10;
+}
+
+.placeholder-status {
+    font-size: 10px;
+    color: #44494e;
+    font-family: monospace;
+}
+
+/* Piano Roll Workspace Timeline Grid Graphics */
+.piano-roll-container {
+    flex: 1;
+    background-color: #181a1c;
+    border: 1px solid #222528;
+    border-radius: 4px;
+    margin: 0 15px 15px 15px;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    box-shadow: inset 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.timeline-bar {
+    display: grid;
+    background-color: #202225;
+    border-bottom: 1px solid #111214;
+    height: 24px;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.timeline-step {
+    font-size: 9px;
+    color: #5c6268;
+    font-weight: bold;
+    font-family: monospace;
+    text-align: left;
+    padding-left: 4px;
+    border-left: 1px solid #2d3136;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.timeline-step.active-step {
+    color: #00ffcc;
+    background-color: #26292c;
+    border-left: 1px solid #00ffcc;
+    box-shadow: inset 0 -2px 0 #00ffcc;
+}
+
+.note-grid {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.grid-row {
+    display: grid;
+    height: 24px;
+    border-bottom: 1px solid #1c1d1f;
+    flex-shrink: 0;
+}
+
+.grid-row:hover {
+    background-color: #191b1d;
+}
+
+.row-label {
+    background-color: #1b1d20;
+    border-right: 1px solid #111214;
+    color: #6c737a;
+    font-size: 10px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.grid-cell {
+    border-right: 1px solid #1c1d1f;
+    background-color: #141517;
+    cursor: pointer;
+}
+
+.grid-cell:nth-child(4n+2), .grid-cell:nth-child(4n+3), .grid-cell:nth-child(4n+4), .grid-cell:nth-child(4n+5) {
+    background-color: #121315;
+}
+
+.grid-cell.active-block {
+    background: linear-gradient(90deg, #ff9900 0%, #ff5500 100%);
+    border-radius: 1px;
+    box-shadow: 0 0 6px rgba(255, 85, 0, 0.5);
+}
+
+.grid-cell.playing-step {
+    background-color: #232629;
+}
+
+.grid-cell.active-block.playing-step {
+    background: linear-gradient(90deg, #ffcc00 0%, #ff7700 100%);
+}
+
+/* Controller Keyboard Mechanics */
+.keyboard {
+    display: grid;
+    grid-template-columns: repeat(22, 1fr);
+    position: relative;
+    height: 18vh; 
+    background-color: #090a0a;
+    padding: 3px;
+    border-radius: 4px;
+    border: 1px solid #1c1e20;
+    gap: 2px;
+    margin: 0 15px 15px 15px;
+    flex-shrink: 0;
+}
+
+.key {
+    cursor: pointer;
+}
+
+.key.white {
+    background: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
+    border-radius: 0 0 3px 3px;
+    border: 1px solid #b0b0b0;
+    z-index: 1;
+}
+
+.key.white:active, .key.white.active {
+    background: linear-gradient(to bottom, #e0e0e0 0%, #c0c0c0 100%);
+}
+
+.key.black {
+    position: absolute;
+    height: 60%;
+    width: 34px; 
+    background: linear-gradient(to bottom, #2c2f33 0%, #111214 100%);
+    border: 1px solid #090a0a;
+    border-radius: 0 0 3px 3px;
+    z-index: 10;
+    box-shadow: 2px 4px 6px rgba(0,0,0,0.5);
+}
+
+.key.black:active, .key.black.active {
+    background: linear-gradient(to bottom, #444950 0%, #1a1c1e 100%);
+}
+
+.key[data-note="C#3"] { left: calc((100% / 22) * 1 - 17px); }
+.key[data-note="D#3"] { left: calc((100% / 22) * 2 - 17px); }
+.key[data-note="F#3"] { left: calc((100% / 22) * 4 - 17px); }
+.key[data-note="G#3"] { left: calc((100% / 22) * 5 - 17px); }
+.key[data-note="A#3"] { left: calc((100% / 22) * 6 - 17px); }
+
+.key[data-note="C#4"] { left: calc((100% / 22) * 8 - 17px); }
+.key[data-note="D#4"] { left: calc((100% / 22) * 9 - 17px); }
+.key[data-note="F#4"] { left: calc((100% / 22) * 11 - 17px); }
+.key[data-note="G#4"] { left: calc((100% / 22) * 12 - 17px); }
+.key[data-note="A#4"] { left: calc((100% / 22) * 13 - 17px); }
+
+.key[data-note="C#5"] { left: calc((100% / 22) * 15 - 17px); }
+.key[data-note="D#5"] { left: calc((100% / 22) * 16 - 17px); }
+.key[data-note="F#5"] { left: calc((100% / 22) * 18 - 17px); }
+.key[data-note="G#5"] { left: calc((100% / 22) * 19 - 17px); }
+.key[data-note="A#5"] { left: calc((100% / 22) * 20 - 17px); }
+
+.grid-cell:nth-child(4n+2) {
+    border-left: 2px solid #5c6268;
+}
+
+.timeline-step:nth-child(4n+2) {
+    border-left: 2px solid #5c6268;
+}
+
+.grid-row.drum-divider {
+    border-bottom: 3px solid #00ffcc;
+    margin-bottom: 5px;
+}
+
+.timeline-bar, .grid-row {
+    min-width: max-content; 
+}
+
+.control-group input[type="range"]::-moz-range-track {
+    width: 100%;
+    height: 3px;
+    background: #050607;
+    border: 1px solid #222528;
+    border-radius: 1px;
+}
+
+.control-group input[type="range"]::-moz-range-thumb {
+    height: 12px;
+    width: 8px;
+    border-radius: 1px;
+    background: #00ffcc;
+    cursor: pointer;
+    border: 1px solid #111214;
+}
